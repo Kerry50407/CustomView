@@ -1,15 +1,17 @@
 package com.example.kerry.customview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.view.View;
 
 /**
  * Created by Kerry on 2016/4/4.
  */
-public class MyCustomView extends RelativeLayout {
+public class MyCustomView extends View {
     public MyCustomView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        ScreenUtility.init((Activity) context);
     }
 
     @Override
@@ -23,7 +25,7 @@ public class MyCustomView extends RelativeLayout {
         int specSize = MeasureSpec.getSize(measureSpec);
 
         if(specMode == MeasureSpec.EXACTLY) {
-            result = specSize;
+            result = (int) (specSize * ScreenUtility.ratio);
         } else {
             result = 200;
             if(specMode == MeasureSpec.AT_MOST) {
@@ -39,7 +41,7 @@ public class MyCustomView extends RelativeLayout {
         int specSize = MeasureSpec.getSize(measureSpec);
 
         if(specMode == MeasureSpec.EXACTLY) {
-            result = specSize;
+            result = (int) (specSize * ScreenUtility.ratio);
         } else {
             result = 200;
             if(specMode == MeasureSpec.AT_MOST) {
